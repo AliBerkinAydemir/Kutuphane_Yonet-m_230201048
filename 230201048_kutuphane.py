@@ -132,3 +132,53 @@ def iade_al(book_id):
     db.commit()
     db.close()
     print("\n[BAŞARILI] Kitap başarıyla iade alındı :)")
+
+# *** ANA MENÜ ARAYÜZÜ ***
+def main():
+    db_baslat()
+    while True:
+        print("\n***************************")
+        print("KÜTÜPHANE YÖNETİM SİSTEMİ")
+        print("***************************")
+        print("1. Yeni Kitap Ekle")
+        print("2. Kitap Sil")
+        print("3. Kitapları Listele")
+        print("4. Kitap Ödünç Ver")
+        print("5. Kitap İade Al")
+        print("6. Yeni Üye Ekle")
+        print("7. Üyeleri Listele")
+        print("8. Çıkış")
+        
+        secim = input("\nLütfen yapmak istediğiniz işlemi seçin (1 ile 8 arasında): ")
+        
+        if secim == "1":
+            kitap_adı = input("Kitap Adı: ")
+            yazar = input("Yazar Adı: ")
+            kitap_no = input("KITAP_NO Numarası: ")
+            kitap_ekle(kitap_adı, yazar, kitap_no)
+        elif secim == "2":
+            b_id = int(input("Silinecek KiTap ID: "))
+            kitap_sil(b_id)
+        elif secim == "3":
+            kitaplari_listele()
+        elif secim == "4":
+            b_id = int(input("Ödünç Kitap ID: "))
+            m_id = int(input("Ödünç Alacak Üye ID: "))
+            odunc_ver(b_id, m_id)
+        elif secim == "5":
+            b_id = int(input("İade Kitap ID: "))
+            iade_al(b_id)
+        elif secim == "6":
+            name = input("Üye Adı ve Soyadı: ")
+            email = input("Üye E-posta Adresi: ")
+            uye_ekle(name, email)
+        elif secim == "7":
+            uyeleri_goster()
+        elif secim == "8":
+            print("\nSistemden çıkılıyor...")
+            break
+        else:
+            print("\n[GEÇERSİZ SEÇİM] Lütfen tekrar deneyin :( )")
+
+if __name__ == "__main__":
+    main()
